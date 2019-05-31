@@ -1,27 +1,17 @@
-# Pokdemo
+**IHM**
+**-**
+**Projet Pokemon**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Lorsque nous lançons mon projet, nous arrivons sur la page d&#39;accueil constitué d&#39;un Pokédex et de l&#39;ensemble des Pokémons. La liste des Pokémons situé en dessous du Pokédex rouge charge les 27 premiers Pokémons. Lorsque nous descendons en bas de la page nous pouvons cliquer sur **&quot;More&quot;** et obtenir les 27 prochains Pokémons et ainsi de suite.
 
-## Code scaffolding
+**Le Pokédex**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Le Pokédex permet de rechercher un Pokémon avec son nom. Quand nous cliquons sur &quot;Choisis un Pokémon&quot;, nous pouvons rechercher un Pokémon en écrivant son prénom en Français dans la barre input associée. Si nous tapons &quot;Ronflex&quot;, Ronflex apparaît dans la liste et nous devons le sélectionner. Ensuite, pour voir ses informations il faut cliquer sur **&quot;Go&quot;**. Une fenêtre apparaît avec toutes les informations de ce dernier, notamment son type, ses stats et ses attaques. Nous pouvons également voir la version shiny du Pokémon en cliquant sur les flèches situé à droite et à gauche du Pokémon. De plus, nous pouvons également écouter son cri en cliquant sur l&#39;image du Pokémon.
 
-## Build
+Si le Pokémon est chargé dans la liste des Pokémons affichés (de base uniquement 27), en utilisant un pipe, le Pokémon apparaît également en dessous du Pokédex rouge. Par exemple, nous pouvons faire le test avec un des 27 premiers Pokémon chargés au démarrage comme par exemple Dracaufeu. Cependant, si il n&#39;a pas été chargé dans la liste il n&#39;apparaît pas, il faudra donc appuyer sur **&quot;Go&quot;**. Le bouton **&quot;RESET&quot;** permet alors de réinitialiser l&#39;input du Pokédex et de rafficher l&#39;ensemble de la liste des Pokémons chargés.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+**La liste des Pokémons**
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+La liste situé en dessous du Pokédex permet d&#39;afficher l&#39;ensemble des Pokémons. Pour accélérer l&#39;affichage des Pokémons, je n&#39;affiche que les 27 premiers Pokémons. Si nous voulons en afficher plus, il faut aller en bas de la page et appuyer sur **&quot;More&quot;** pour afficher les 27 suivants et ainsi de suite. Chaque Pokémon est associé à une couleur en fonction du type de ce dernier. Par exemple, vert pour les Pokémons de type plante, rouge pour les Pokémons de type feu et cela pour chacuns des types existants. Chaque _card_ est constitué du nom du Pokémon, de son numéro dans le Pokédex, de son type, de son type et de son image. Nous pouvons également voir sa version shiny en appuyant sur la flèche. De plus, nous pouvons appuyer sur la petite croix pour avoir les informations supplémentaires du Pokémons, exactement celles obtenues avec le bouton **&quot;Go&quot;** dans le Pokédex. Nous pouvons également appuyer sur chacun des Pokémons pour connaître leurs cris.
