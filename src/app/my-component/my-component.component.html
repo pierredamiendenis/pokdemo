@@ -1,0 +1,140 @@
+<!-- <p-panel styleClass="ui-panel-content" header="{{id}} : {{name}}" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+
+    <img [src]="onGetImage()" height="100" width="100" (click)="test1()">
+
+
+    
+</p-panel> -->
+
+<mat-card class="example-card" [ngStyle]="getBackgroundColor()">
+    <mat-card-header>
+        <mat-card-title>#{{id}} {{name}}</mat-card-title>
+        <mat-card-subtitle>Mode : {{photos[indice].type}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div>
+            <img *ngFor="let t of type" [src]="getImageType(t)" style="margin-right: 10px">
+        </div>
+
+    </mat-card-content>
+    <!-- <img src="./../../assets/img/pokeball.png" width="5%" height="5%" class="totheright" (click)="showDialog()"> -->
+    <i (click)="showDialog()" class="pi pi-plus totheright"></i>
+
+    <div class="ui-g center-bloc">
+        <div class="ui-g-2">
+            <span class="pi pi-angle-left" style="font-size: 3em" (click)="onChangeImageMoins()"></span>
+        </div>
+        <div class="ui-g-8">
+            <img [src]="url_photo" (click)="playAudio()">
+        </div>
+        <div class="ui-g-2">
+            <span class="pi pi-angle-right" style="font-size: 3em" (click)="onChangeImagePlus()"></span>
+        </div>
+    </div>
+
+
+
+
+</mat-card>
+
+<br>
+
+
+<p-dialog header="{{id}} : {{name}}" [(visible)]="display" [modal]="true" [responsive]="true"
+    [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [maximizable]="false" [baseZIndex]="10000"
+    [ngStyle]="getBackgroundColor()">
+
+
+    <div class="ui-g center-bloc">
+        <div class="ui-g-2">
+            <span class="pi pi-angle-left" style="font-size: 2em" (click)="onChangeImageMoins()"></span>
+        </div>
+        <div class="ui-g-8">
+            <img [src]="url_photo" (click)="playAudio()">
+        </div>
+        <div class="ui-g-2">
+            <span class="pi pi-angle-right" style="font-size: 2em" (click)="onChangeImagePlus()"></span>
+        </div>
+    </div>
+
+
+    <div>
+        <img *ngFor="let t of type" [src]="getImageType(t)" style="margin-right: 10px">
+    </div>
+
+    <hr>
+
+    <p-tabView class="headertabview">
+        <p-tabPanel header="Statistiques" class="headertabview">
+
+            <div *ngFor="let s of stats; index as i">
+                {{s.name}} : {{s.percentage}}
+
+                <p-progressBar class="stats1" *ngIf="i==0" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+                <p-progressBar class="stats2" *ngIf="i==1" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+                <p-progressBar class="stats3" *ngIf="i==2" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+                <p-progressBar class="stats4" *ngIf="i==3" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+                <p-progressBar class="stats5" *ngIf="i==4" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+                <p-progressBar class="stats6" *ngIf="i==5" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+
+
+            </div>
+        </p-tabPanel>
+
+        <p-tabPanel header="Attaques">
+
+
+            <p-scrollPanel [style]="{width: '100%', height: '200px'}">
+                <div *ngFor="let m of infoMoves" style="margin-bottom: 10px">
+
+                    <p-card class="cardchange">
+                        <div>
+                            <img [src]="getImageType(m.type)" style="margin-right: 10px">
+                            : {{m.name}}
+
+                        </div>
+                        <div class="ui-g" *ngIf="m.accuracy!=null">
+                            <div class="ui-g-6">
+                                Précision :
+                            </div>
+                            <div class="ui-g-6">
+                                <p-progressBar class="accuracy" value="{{m.accuracy}}"
+                                    [style]="{'height': '20px','margin-bottom':'2px'}"></p-progressBar>
+                            </div>
+                        </div>
+                        <div class="ui-g" *ngIf="m.power!=null">
+                            <div class="ui-g-6">
+                                Puissance :
+                            </div>
+                            <div class="ui-g-6">
+                                <p-progressBar class="power" unit="" value="{{m.power}}"
+                                    [style]="{'height': '20px','margin-bottom':'2px'}"></p-progressBar>
+                            </div>
+                        </div>
+
+                        <div>
+                            PP : {{m.pp}}/{{m.pp}}
+
+                        </div>
+
+                    </p-card>
+
+                </div>
+            </p-scrollPanel>
+
+
+
+        </p-tabPanel>
+    </p-tabView>
+
+
+
+
+
+
+    <p-footer>
+        <button type="button" pButton icon="pi pi-times" (click)="display=false" label="Quit"
+            class="ui-button-secondary"></button>
+    </p-footer>
+</p-dialog>

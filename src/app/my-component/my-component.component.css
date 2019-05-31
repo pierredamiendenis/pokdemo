@@ -1,0 +1,81 @@
+
+ :host >>> .ui-panel-content .ui-widget-content{
+  background-color: getBackgroundColor();
+}
+
+.example-card {
+  max-width: 350px;
+  height: 250px;
+}
+
+
+.totheright {
+  display: block;
+  margin-left: 70%;
+  text-align: center;
+
+}
+
+:host >>> .test .ui-carousel-header .ui-carousel-header-title	.ui-carousel {
+  background-color: red !important;
+}
+
+::ng-deep .test .ui-carousel-header .ui-carousel-header-title	.ui-carousel{
+  background-color: red !important;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+}
+
+span:hover {
+  cursor: pointer;
+}
+
+:host >>> .accuracy .ui-progressbar .ui-progressbar-value {
+  background: rgba(0, 255, 8, 0.558);
+}
+
+:host >>> .power .ui-progressbar .ui-progressbar-value {
+  background: rgba(255, 0, 0, 0.558);
+}
+
+
+:host >>> .cardchange .ui-card {
+  background: rgba(201, 164, 164, 0.558);
+}
+
+:host >>> .headertabview .ui-tabview .ui-tabview-selected {
+  background: rgba(138, 10, 10, 0.558);
+}
+
+
+
+
+:host >>> .stats1 .ui-progressbar .ui-progressbar-value {
+  background: rgba(27, 107, 177, 0.558);
+}
+
+:host >>> .stats2 .ui-progressbar .ui-progressbar-value {
+  background: rgba(246, 250, 0, 0.639);
+}
+
+:host >>> .stats3 .ui-progressbar .ui-progressbar-value {
+  background: rgba(181, 36, 166, 0.558);
+}
+
+:host >>> .stats4 .ui-progressbar .ui-progressbar-value {
+  background: rgba(255, 145, 0, 0.558);
+}
+
+:host >>> .stats5 .ui-progressbar .ui-progressbar-value {
+  background: rgba(255, 0, 0, 0.558);
+}
+
+:host >>> .stats6 .ui-progressbar .ui-progressbar-value {
+  background: rgba(0, 255, 8, 0.558);
+}

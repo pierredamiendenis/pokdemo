@@ -1,20 +1,190 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="center-block">
 
+  <!-- <div>
+
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nom du Pokemon" [(ngModel)]="ndp">
+        </mat-form-field>
+
+  </div> -->
+
+
+  <div class="container" style="z-index: 100000">
+    <img src="./../assets/img/pokedex.png" height="40%" width="40%">
+    <div class="btn">
+      <p-dropdown [options]="list_pokemon_name" [(ngModel)]="selectedPokemon" filter="true"
+        placeholder="Choisis un Pokémon">
+        <ng-template let-item pTemplate="selectedItem">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{item.index+1}}.png"
+            style="width:100px;vertical-align:middle" />
+          <span style="vertical-align:middle">{{item.label}}</span>
+        </ng-template>
+        <ng-template let-car pTemplate="item" style="z-index: 100000">
+          <div class="ui-helper-clearfix" style="position: relative;height: 40px">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{car.index+1}}.png"
+              style="width:40px;position:absolute" />
+            <div style="font-size:14px;float:right;margin-top:10px">{{car.label}}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+
+      <button pButton style="margin-left: 10px;" type="button" label="Go" class="ui-button-rounded ui-button-success"
+        (click)="onSearchPokemon(selectedPokemon)" [disabled]="selectedPokemon==undefined"></button>
+
+      <button pButton style="margin-left: 10px;" type="button" label="RESET" class="ui-button-rounded ui-button-success"
+        (click)="selectedPokemon=nul"></button>
+
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+  <div class="center-block1" [fxLayout]="'row wrap'">
+
+    <app-my-component class="center-block" fxFlex.gt-xs="100%" [fxFlex.gt-md]="regularDistribution"
+      *ngFor="let pokemon of list_pokemon | filterPokemonPipe :selectedPokemon" [id]="pokemon.getId()"
+      [name]=pokemon.getName() [type]="pokemon.getType()" [stats]="pokemon.getStats()" [moves]="pokemon.getMoves()">
+    </app-my-component>
+
+
+
+
+  </div>
+
+
+  <div class="ui-g" *ngIf="selectedPokemon==undefined">
+    <div class="ui-g-1"></div>
+    <div class="ui-g-10">
+      <button pButton type="button" (click)="onTest()" class="ui-button-rounded ui-button-secondary center-block">
+        <p>---More---</p>
+        <span class="pi pi-angle-double-down"></span>
+      </button>
+
+    </div>
+    <div class="ui-g-1"></div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <p-dialog header="{{PokId}} : {{selectedPokemon}}" [(visible)]="display" [modal]="true" [responsive]="true"
+    [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [maximizable]="false" [baseZIndex]="10000">
+
+
+    <div class="ui-g center-bloc">
+      <div class="ui-g-2">
+        <span class="pi pi-angle-left" style="font-size: 2em" (click)="onChangeImageMoins()"></span>
+      </div>
+      <div class="ui-g-8">
+        <img [src]="url_photo" (click)="playAudio()">
+      </div>
+      <div class="ui-g-2">
+        <span class="pi pi-angle-right" style="font-size: 2em" (click)="onChangeImagePlus()"></span>
+      </div>
+    </div>
+
+
+    <div>
+      <img *ngFor="let t of PokTypes" [src]="getImageType(t)" style="margin-right: 10px">
+    </div>
+
+    <hr>
+
+    <p-tabView class="headertabview">
+      <p-tabPanel header="Statistiques" class="headertabview">
+
+        <div *ngFor="let s of PokStats; index as i">
+          {{s.name}} : {{s.percentage}}
+          <p-progressBar class="stats1" *ngIf="i==0" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+          <p-progressBar class="stats2" *ngIf="i==1" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+          <p-progressBar class="stats3" *ngIf="i==2" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+          <p-progressBar class="stats4" *ngIf="i==3" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+          <p-progressBar class="stats5" *ngIf="i==4" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+          <p-progressBar class="stats6" *ngIf="i==5" value="{{s.percentage}}" [style]="{'height': '5px','margin-bottom':'2px'}"></p-progressBar>
+
+          
+
+
+
+        </div>
+      </p-tabPanel>
+
+      <p-tabPanel header="Attaques">
+
+
+        <p-scrollPanel [style]="{width: '100%', height: '200px'}">
+          <div *ngFor="let m of infoMoves" style="margin-bottom: 10px">
+
+            <p-card class="cardchange">
+              <div>
+                <img [src]="getImageType(m.type)" style="margin-right: 10px">
+                : {{m.name}}
+
+              </div>
+              <div class="ui-g" *ngIf="m.accuracy!=null">
+                <div class="ui-g-6">
+                  Précision :
+                </div>
+                <div class="ui-g-6">
+                  <p-progressBar class="accuracy" value="{{m.accuracy}}"
+                    [style]="{'height': '20px','margin-bottom':'2px'}"></p-progressBar>
+                </div>
+              </div>
+              <div class="ui-g" *ngIf="m.power!=null">
+                <div class="ui-g-6">
+                  Puissance :
+                </div>
+                <div class="ui-g-6">
+                  <p-progressBar class="power" unit="" value="{{m.power}}"
+                    [style]="{'height': '20px','margin-bottom':'2px'}"></p-progressBar>
+                </div>
+              </div>
+
+              <div>
+                PP : {{m.pp}}/{{m.pp}}
+
+              </div>
+
+            </p-card>
+
+          </div>
+        </p-scrollPanel>
+
+
+
+      </p-tabPanel>
+    </p-tabView>
+
+
+
+
+
+
+    <p-footer>
+      <button type="button" pButton icon="pi pi-times" (click)="display=false" label="Quit"
+        class="ui-button-secondary"></button>
+    </p-footer>
+  </p-dialog>
